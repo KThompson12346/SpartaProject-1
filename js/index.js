@@ -1,6 +1,5 @@
-// $(function(event){
-//
-//
-//
-// })
-alert("I work");
+$(function(event){
+
+
+
+})
