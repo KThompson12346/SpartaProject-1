@@ -5,7 +5,7 @@ $(function(event){
 
    function Enemy(width, height, left, top, colour) {
      var enemy = $(".enemy")[this.objCount];
-       $(".levelScreen").append("<div class='enemy'>dddddd</div>");
+       $(".levelScreen").append("<div class='enemy' id='donthit'>dddddd</div>");
        this.objCount = objCount;
        this.width = width;
        this.height = height;
@@ -26,6 +26,12 @@ $(function(event){
      $(".levelScreen").mousemove(function(event){
        console.log("Coodinates of mouse: " + event.pageX + ", " + event.pageY);
        console.log("Coodinates of mouse: " + event.clientX + ", " + event.clientY);
+     })
+   }
+
+   function hitTarget() {
+     $(".enemy").on("click", function(){
+       console.log("I am clicked");
      })
    }
 
@@ -51,7 +57,7 @@ $(function(event){
 
 
    Enemy.prototype.moveVertical = function(offset) {
-     var elem = $(".enemy")[this.objCount];
+     var elem = $("#donthit.enemy")[this.objCount];
      console.log(elem);
      var id = setInterval(frame, 10);
      function frame() {
@@ -69,6 +75,7 @@ $(function(event){
    target1.moveHorizontal(100);
    target2.moveVertical(100);
    mouseAim();
+   hitTarget();
 
 
 
