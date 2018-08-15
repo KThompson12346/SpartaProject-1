@@ -1,3 +1,4 @@
+/* to animate the an element position has to be fixed, relative or absolute. */
 .gameScreen {
   height: 100vh;
   background: #D3D3D3;
@@ -13,7 +14,7 @@
 }
 
 .Target {
-  position: relative; /* to animate the an element position has to be fixed, relative or absolute. */
+  position: relative;
   height: 100px;
   width: 100px;
   background-color: red;

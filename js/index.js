@@ -2,25 +2,32 @@ $(function(event){
 
    var objCount = 0;
 
-
    function Enemy(width, height, left, top, colour) {
-     var enemy = $(".enemy")[this.objCount];
-       $(".levelScreen").append("<div class='enemy' id='donthit'>dddddd</div>");
        this.objCount = objCount;
        this.width = width;
        this.height = height;
        this.left = left;
        this.top = top;
        this.colour = colour;
+
+       var enemy = "enemy" + this.objCount;
+       $(".levelScreen").append("<div class='"+enemy+"'>Enemy</div>");
+       hitTarget(enemy);
        objCount++;
-       $(".enemy").css({
+
+       $(".enemy" + this.objCount).css({
          backgroundColor: colour,
          position: "relative",
          width: width,
          height: height,
          display: "inline-block",
+         textAlign: "center"
        });
    };
+
+   function generateEnemies(amount) {
+     
+   }
 
    function mouseAim() {
      $(".levelScreen").mousemove(function(event){
@@ -29,55 +36,45 @@ $(function(event){
      })
    }
 
-   function hitTarget() {
-     $(".enemy").on("click", function(){
-       console.log("I am clicked");
+   function hitTarget(enemy) {
+     $("."+enemy).on("click", function(){
+        $(".enemy").remove();
+        console.log("I am dead");
      })
    }
 
+
    function enemyMovement(){
      var random = Math.floor((Math.random() * 150) + 1);
-
    }
 
-   Enemy.prototype.moveHorizontal = function(offset) {
 
-      var elem = $(".enemy")[this.objCount];
-      console.log(elem);
+
+   Enemy.prototype.moveHorizontal = function(offset) {
+      var elem = ".enemy"+this.objCount;
       var id = setInterval(frame, 10);
       function frame() {
         if (offset == 590) {
           clearInterval(id);
         } else {
-        offset++;
-        elem.style.top = offset + "px";
+          offset++;
+          $(elem).offset({left: offset})
         }
       }
     }
 
-
-   Enemy.prototype.moveVertical = function(offset) {
-     var elem = $("#donthit.enemy")[this.objCount];
-     console.log(elem);
-     var id = setInterval(frame, 10);
-     function frame() {
-       if (offset == 660.797) {
-       clearInterval(id);
-       } else {
-         offset++;
-         elem.style.left = offset + "px";
-       }
-     }
-   }
-
-   var target1 = new Enemy(100,70,10,10, "red");
-   var target2 = new Enemy(100,70,10,10, "yellow");
-   target1.moveHorizontal(100);
-   target2.moveVertical(100);
-   mouseAim();
-   hitTarget();
-
-
+    Enemy.prototype.moveVertical = function(offset) {
+      var elem = ".enemy"+this.objCount;
+      var id = setInterval(frame, 10);
+      function frame() {
+        if (offset == 590) {
+          clearInterval(id);
+        } else {
+          offset++;
+          $(elem).offset({top: offset})
+        }
+      }
+    }
 
   function detectCollision() {
     var targetTop, targetLeft, targetRight, targetBottom;
@@ -92,11 +89,17 @@ $(function(event){
     target2Left = target2.offset().left;
     target2Right = Number(target2.offset().left) + Number(target2.width());
     target2Bottom = Number(target2.offset().top) + Number(target2.height());
-    // (Element1.right > Element2.left && Element1.left < Element2.right && Element1.top < Element2.bottom && Element1.bottom > Element2.top)
+
     if (target.right > target2.left && target.left < target2.right && target.top < target2.bottom && target.bottom > target2.top) {
       console.log("A collision!!");
     }
-
   }
 
+  var enemy1 = new Enemy(100,70,80,50, "red");
+  var enemy2 = new Enemy(100,100,10,10, "green");
+  console.log(enemy1);
+  console.log(enemy2);
+  enemy1.moveHorizontal(100);
+  enemy2.moveVertical(100);
+  mouseAim();
 })
