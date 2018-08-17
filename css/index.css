@@ -1,9 +1,18 @@
-/* to animate the an element position has to be fixed, relative or absolute. */
+/* to animate the element an element position has to be fixed, relative or absolute. */
 .gameScreen {
   height: 100vh;
   background: #D3D3D3;
   text-align: center;
   position: relative;
+}
+
+.target {
+  background-color: #1B58E5;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
 }
 
 .levelScreen {
