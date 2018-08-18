@@ -1,5 +1,11 @@
 $(function(event) {
+   var States = {inGame: "IN_GAME", menu: "MENU"}
 
+    var state = States.inGame;
+
+    var playerOneScore = 0;
+    var levelNum = 0; // The level the player is on
+    var gameScore = 0; // Is the highscore of the player
     var objCount = 0;
     var enemyArea = $(".levelScreen");
     var enemyAreaWidth = enemyArea.width();
@@ -46,39 +52,8 @@ $(function(event) {
         $("." + enemy).on("click", function() {
             $("." + enemy).remove();
             console.log("I am dead");
+            playerOneScore++;
         })
-    }
-
-    Enemy.prototype.moveHorizontal = function(offset) {
-        var elem = ".enemy" + this.objCount;
-        var id = setInterval(frame, 10);
-
-        function frame() {
-            if (offset == 590) {
-                clearInterval(id);
-            } else {
-                offset++;
-                $(elem).offset({
-                    left: offset
-                })
-            }
-        }
-    }
-
-    Enemy.prototype.moveVertical = function(offset) {
-        var elem = ".enemy" + this.objCount;
-        var id = setInterval(frame, 10);
-
-        function frame() {
-            if (offset == 590) {
-                clearInterval(id);
-            } else {
-                offset++;
-                $(elem).offset({
-                    top: offset
-                })
-            }
-        }
     }
 
     function detectCollision(myclass) {
@@ -109,11 +84,34 @@ $(function(event) {
     var enemy1 = new Enemy("red");
     var enemy2 = new Enemy("green");
     var enemy3 = new Enemy("yellow");
-    animateDiv(".enemy0",1000);
-    animateDiv(".enemy1",1000);
-    animateDiv(".enemy2",1000);
-    mouseAim();
-    console.log($(".enemy0").offset());
-    console.log($(".enemy1").offset());
-    console.log($(".enemy2").offset());
-})
+
+
+
+  function update_game() {
+  animateDiv(".enemy0",1000);
+  animateDiv(".enemy1",1000);
+  animateDiv(".enemy2",1000);
+  mouseAim();
+  console.log($(".enemy0").offset());
+  console.log($(".enemy1").offset());
+  console.log($(".enemy2").offset());
+
+  }
+
+  function update_menu() {
+
+  }
+
+  switch (state) {
+    case States.inGame:
+        update_game();
+      break;
+    case States.menu:
+      update_menu();
+      break;
+    default:
+      console.log("state: " + state);
+
+  }
+
+  })

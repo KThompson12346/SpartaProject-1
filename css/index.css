@@ -1,4 +1,8 @@
 /* to animate the element an element position has to be fixed, relative or absolute. */
+.mainMenu {
+
+}
+
 .gameScreen {
   height: 100vh;
   background: #D3D3D3;
