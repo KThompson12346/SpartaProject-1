@@ -1,17 +1,19 @@
 $(function(event) {
 
     var objCount = 0;
+    var enemyArea = $(".levelScreen");
+    var enemyAreaWidth = enemyArea.width();
+    var enemyAreaheight = enemyArea.height();
+    var maxX = enemyAreaWidth - 100;
+    var maxY = enemyAreaheight - 100;
+    var enemy = "enemy" + this.objCount;
 
     function Enemy(width, height, colour) {
         this.objCount = objCount;
         this.width = width;
         this.height = height;
-        this.left = randomise($(".levelScreen").width() - width);
-        console.log(this.left + "left");
-        this.top = randomise($(".levelScreen").height() - height);
-        console.log(this.left + "top");
-        console.log(this.left);
-        console.log(this.top);
+        this.left = randomise(enemyAreaWidth - width);
+        this.top = randomise(enemyAreaheight - height);
         this.colour = colour;
 
         var enemy = "enemy" + this.objCount;
@@ -25,20 +27,10 @@ $(function(event) {
             width: width,
             height: height,
             display: "inline-block",
-            textAlign: "center"
+            textAlign: "center",
+
         });
     };
-
-    Enemy.prototype.newEnemyPos = function() {
-        var enemy = ".enemy" + this.objCount;
-        var enemyArea = $(".levelScreen");
-        var maxX = enemyArea.width() - $(enemy).width();
-        var maxY = enemyArea.height() - $(enemy).height();
-        var newX = Math.floor(Math.random() * maxX);
-        var newY = Math.floor(Math.random() * maxY);
-        var XandY = [newX, newY];
-        return XandY;
-    }
 
     function mouseAim() {
         $(".levelScreen").mousemove(function(event) {
@@ -106,20 +98,12 @@ $(function(event) {
     }
 
     function makeNewPosition(myclass) {
-
         // Get viewport dimensions (remove the dimension of the div)
-        var enemy = ".enemy" + this.objCount;
-        var enemyArea = $(".levelScreen");
-        var maxX = enemyArea.width() - 100;
-        var maxY = enemyArea.height() - 100;
-        // var h = $(".levelScreen").height() - myclass.height;
-        // var w = $(".levelScreen").width() * 0.8;
-
+        // var enemy = ".enemy" + this.objCount;
+        // var enemyArea = $(".levelScreen");
         var nh = Math.floor(Math.random() * maxY);
         var nw = Math.floor(Math.random() * maxX);
-
         return [nh, nw];
-
     }
 
     function animateDiv(myclass, speed) {
@@ -136,15 +120,22 @@ $(function(event) {
         return Math.floor(Math.random() * maxLength);
     }
 
-    var enemy1 = new Enemy(100, 100, "red");
+    var enemy1 = new Enemy(50, 50, "red");
     var enemy2 = new Enemy(100, 100, "green");
     var enemy3 = new Enemy(100, 100, "yellow");
+
     // console.log(enemy1);
     // console.log(enemy2);
     // console.log(enemy3);
-    animateDiv('.enemy0',1000);
-    animateDiv('.enemy1',1000);
-    animateDiv('.enemy2',1000);
+    animateDiv(".enemy0",1000);
+    animateDiv(".enemy1",1000);
+    animateDiv(".enemy2",1000);
+    $(".enemy0").offset({top: 0, left: 0});
+    $(".enemy1").offset({top: 2000, left: 2000});
+    $(".enemy2").position({top: 500, left: 500});
     // enemy2.animateDiv(100);
-    //mouseAim();
+    mouseAim();
+    console.log($(".enemy0").offset());
+    console.log($(".enemy1").offset());
+    console.log($(".enemy2").offset());
 })
