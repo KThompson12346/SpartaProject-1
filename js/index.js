@@ -4,16 +4,18 @@ $(function(event) {
     var enemyArea = $(".levelScreen");
     var enemyAreaWidth = enemyArea.width();
     var enemyAreaheight = enemyArea.height();
-    var maxX = enemyAreaWidth - 100;
-    var maxY = enemyAreaheight - 100;
+    var objWidth = 50;
+    var objHeight = 50;
+    var maxX = enemyAreaWidth - objWidth;
+    var maxY = enemyAreaheight - objHeight;
     var enemy = "enemy" + this.objCount;
 
-    function Enemy(width, height, colour) {
+    function Enemy(colour) {
         this.objCount = objCount;
-        this.width = width;
-        this.height = height;
-        this.left = randomise(enemyAreaWidth - width);
-        this.top = randomise(enemyAreaheight - height);
+        this.width = objWidth;
+        this.height = objHeight;
+        this.left = randomise(maxX);
+        this.top = randomise(maxY);
         this.colour = colour;
 
         var enemy = "enemy" + this.objCount;
@@ -24,8 +26,8 @@ $(function(event) {
         $(".enemy" + this.objCount).css({
             backgroundColor: colour,
             position: "absolute",
-            width: width,
-            height: height,
+            width: this.width,
+            height: this.height,
             display: "inline-block",
             textAlign: "center",
             left: this.left,
@@ -80,13 +82,11 @@ $(function(event) {
     }
 
     function detectCollision(myclass) {
-      
+
     }
 
     function makeNewPosition(myclass) {
         // Get viewport dimensions (remove the dimension of the div)
-        // var enemy = ".enemy" + this.objCount;
-        // var enemyArea = $(".levelScreen");
         var nh = Math.floor(Math.random() * maxY);
         var nw = Math.floor(Math.random() * maxX);
         return [nh, nw];
@@ -106,13 +106,9 @@ $(function(event) {
         return Math.floor(Math.random() * maxLength);
     }
 
-    var enemy1 = new Enemy(50, 50, "red");
-    var enemy2 = new Enemy(100, 100, "green");
-    var enemy3 = new Enemy(100, 100, "yellow");
-
-    // console.log(enemy1);
-    // console.log(enemy2);
-    // console.log(enemy3);
+    var enemy1 = new Enemy("red");
+    var enemy2 = new Enemy("green");
+    var enemy3 = new Enemy("yellow");
     animateDiv(".enemy0",1000);
     animateDiv(".enemy1",1000);
     animateDiv(".enemy2",1000);
