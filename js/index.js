@@ -1,7 +1,7 @@
 $(function(event) {
    var States = {inGame: "IN_GAME", menu: "MENU"}
 
-    var state = States.inGame;
+    var state = States.menu;
 
     var playerOneScore = 0;
     var levelNum = 0; // The level the player is on
@@ -41,6 +41,31 @@ $(function(event) {
         });
     };
 
+
+    function Menu() {
+        this.objCount = objCount;
+        this.width = objWidth;
+        this.height = objHeight;
+        this.left = 100;
+        this.top = 100;
+
+        var menu = "menu" + this.objCount;
+        $(".levelScreen").append("<div class='" + menu + "'>Menu</div>");
+        hitTarget(enemy); // records clicks!
+        objCount++;
+
+        $(".menu" + this.objCount).css({
+          backgroundColor: "red",
+            position: "absolute",
+            width: this.width,
+            height: this.height,
+            display: "inline-block",
+            textAlign: "center",
+            left: this.left,
+            top: this.top
+        });
+    };
+
     function mouseAim() {
         $(".levelScreen").mousemove(function(event) {
             //console.log("Coodinates of mouse: " + event.pageX + ", " + event.pageY);
@@ -67,6 +92,7 @@ $(function(event) {
         return [nh, nw];
     }
 
+
     function animateDiv(myclass, speed) {
         var newq = makeNewPosition(myclass);
         $(myclass).animate({
@@ -84,6 +110,7 @@ $(function(event) {
     var enemy1 = new Enemy("red");
     var enemy2 = new Enemy("green");
     var enemy3 = new Enemy("yellow");
+    var menu = new Menu();
 
 
 
@@ -99,6 +126,8 @@ $(function(event) {
   }
 
   function update_menu() {
+
+       $(".levelScreen").append("<div class='"+menu+"'>Menu</div>");
 
   }
 
