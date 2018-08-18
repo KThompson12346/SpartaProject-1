@@ -28,7 +28,8 @@ $(function(event) {
             height: height,
             display: "inline-block",
             textAlign: "center",
-
+            left: this.left,
+            top: this.top
         });
     };
 
@@ -78,23 +79,8 @@ $(function(event) {
         }
     }
 
-    function detectCollision() {
-        var targetTop, targetLeft, targetRight, targetBottom;
-        var target2Top, target2Left, target2Right, target2Bottom;
-
-        targetTop = target.offset().top;
-        targetLeft = target.offset().left;
-        targetRight = Number(target.offset().left) + Number(target.width() * 50);
-        targetBottom = Number(target.offset().top) + Number(target.height() * 50);
-
-        target2Top = target2.offset().top;
-        target2Left = target2.offset().left;
-        target2Right = Number(target2.offset().left) + Number(target2.width());
-        target2Bottom = Number(target2.offset().top) + Number(target2.height());
-
-        if (target.right > target2.left && target.left < target2.right && target.top < target2.bottom && target.bottom > target2.top) {
-            console.log("A collision!!");
-        }
+    function detectCollision(myclass) {
+      
     }
 
     function makeNewPosition(myclass) {
@@ -130,10 +116,6 @@ $(function(event) {
     animateDiv(".enemy0",1000);
     animateDiv(".enemy1",1000);
     animateDiv(".enemy2",1000);
-    $(".enemy0").offset({top: 0, left: 0});
-    $(".enemy1").offset({top: 2000, left: 2000});
-    $(".enemy2").position({top: 500, left: 500});
-    // enemy2.animateDiv(100);
     mouseAim();
     console.log($(".enemy0").offset());
     console.log($(".enemy1").offset());
