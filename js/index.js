@@ -7,7 +7,9 @@ $(function(event) {
         this.width = width;
         this.height = height;
         this.left = randomise($(".levelScreen").width() - width);
+        console.log(this.left + "left");
         this.top = randomise($(".levelScreen").height() - height);
+        console.log(this.left + "top");
         console.log(this.left);
         console.log(this.top);
         this.colour = colour;
@@ -19,7 +21,7 @@ $(function(event) {
 
         $(".enemy" + this.objCount).css({
             backgroundColor: colour,
-            position: "relative",
+            position: "absolute",
             width: width,
             height: height,
             display: "inline-block",
@@ -40,8 +42,8 @@ $(function(event) {
 
     function mouseAim() {
         $(".levelScreen").mousemove(function(event) {
-            console.log("Coodinates of mouse: " + event.pageX + ", " + event.pageY);
-            console.log("Coodinates of mouse: " + event.clientX + ", " + event.clientY);
+            //console.log("Coodinates of mouse: " + event.pageX + ", " + event.pageY);
+            //console.log("Coodinates of mouse: " + event.clientX + ", " + event.clientY);
         })
     }
 
@@ -103,32 +105,30 @@ $(function(event) {
         }
     }
 
-    function makeNewPosition() {
+    function makeNewPosition(myclass) {
 
         // Get viewport dimensions (remove the dimension of the div)
-        var h = $(".levelScreen").height();
-        var w = $(".levelScreen").width() * 0.8;
+        var enemy = ".enemy" + this.objCount;
+        var enemyArea = $(".levelScreen");
+        var maxX = enemyArea.width() - 100;
+        var maxY = enemyArea.height() - 100;
+        // var h = $(".levelScreen").height() - myclass.height;
+        // var w = $(".levelScreen").width() * 0.8;
 
-        var nh = Math.floor(Math.random() * h);
-        var nw = Math.floor(Math.random() * w);
+        var nh = Math.floor(Math.random() * maxY);
+        var nw = Math.floor(Math.random() * maxX);
 
-        console.log(nh + "nh");
-        console.log(nw + "nw");
-        console.log($(".gameScreen").width() + "window size width");
-        console.log($(".gameScreen").height() + "window size height");
-
-        
         return [nh, nw];
 
     }
 
     function animateDiv(myclass, speed) {
-        var newq = makeNewPosition();
+        var newq = makeNewPosition(myclass);
         $(myclass).animate({
             top: newq[0],
             left: newq[1]
         }, speed, function() {
-            animateDiv(myclass);
+            animateDiv(myclass, speed);
         });
     };
 
@@ -146,5 +146,5 @@ $(function(event) {
     animateDiv('.enemy1',1000);
     animateDiv('.enemy2',1000);
     // enemy2.animateDiv(100);
-    mouseAim();
+    //mouseAim();
 })
