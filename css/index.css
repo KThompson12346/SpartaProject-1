@@ -1,3 +1,8 @@
+/* to animate the element an element position has to be fixed, relative or absolute. */
+.mainMenu {
+
+}
+
 .gameScreen {
   height: 100vh;
   background: #D3D3D3;
@@ -5,33 +10,27 @@
   position: relative;
 }
 
+.target {
+  background-color: #1B58E5;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
+}
+
 .levelScreen {
   height: 80%; /* height is 590 */
   width: 80%;
   background: black;
   margin: auto;
+  position: relative;
 }
 
-.Target {
-  position: relative; /* to animate the an element position has to be fixed, relative or absolute. */
-  height: 100px;
+.startBtn {
+  margin-top: 15px;
+  border-radius: 30px
+  height: 60px;
   width: 100px;
-  background-color: red;
-  border-radius: 12px;
-  animation: move 1s linear infinite;
-}
-@keyframes move {
-  100%{
-    transform: translate(0px)
-  }
-  100% {
-    transform:translate(900px)
-  }
-}
-.Target2 {
-  position: relative;
-  height: 100px;
-  width: 100px;
-  background-color: white;
-  border-radius: 12px;
+  display: inline-block;
 }

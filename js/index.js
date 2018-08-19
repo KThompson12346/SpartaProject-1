@@ -1,95 +1,117 @@
-$(function(event){
+$(function(event) {
+   var States = {inGame: "IN_GAME", menu: "MENU"}
 
-   var objCount = 0;
+    var state = States.inGame;
 
+    var playerOneScore = 0;
+    var levelNum = 0; // The level the player is on
+    var gameScore = 0; // Is the highscore of the player
+    var objCount = 0;
+    var enemyArea = $(".levelScreen");
+    var enemyAreaWidth = enemyArea.width();
+    var enemyAreaheight = enemyArea.height();
+    var objWidth = 50;
+    var objHeight = 50;
+    var maxX = enemyAreaWidth - objWidth;
+    var maxY = enemyAreaheight - objHeight;
+    var enemy = "enemy" + this.objCount;
 
-   function Enemy(width, height, left, top, colour) {
-     var enemy = $(".enemy")[this.objCount];
-       $(".levelScreen").append("<div class='enemy'>dddddd</div>");
-       this.objCount = objCount;
-       this.width = width;
-       this.height = height;
-       this.left = left;
-       this.top = top;
-       this.colour = colour;
-       objCount++;
-       $(".enemy").css({
-         backgroundColor: colour,
-         position: "relative",
-         width: width,
-         height: height,
-         display: "inline-block",
-       });
-   };
+    function Enemy(colour) {
+        this.objCount = objCount;
+        this.width = objWidth;
+        this.height = objHeight;
+        this.left = randomise(maxX);
+        this.top = randomise(maxY);
+        this.colour = colour;
 
-   function mouseAim() {
-     $(".levelScreen").mousemove(function(event){
-       console.log("Coodinates of mouse: " + event.pageX + ", " + event.pageY);
-       console.log("Coodinates of mouse: " + event.clientX + ", " + event.clientY);
-     })
-   }
+        var enemy = "enemy" + this.objCount;
+        $(".levelScreen").append("<div class='" + enemy + "'>Enemy</div>");
+        hitTarget(enemy);
+        objCount++;
 
-   function enemyMovement(){
-     var random = Math.floor((Math.random() * 150) + 1);
+        $(".enemy" + this.objCount).css({
+            backgroundColor: colour,
+            position: "absolute",
+            width: this.width,
+            height: this.height,
+            display: "inline-block",
+            textAlign: "center",
+            left: this.left,
+            top: this.top
+        });
+    };
 
-   }
-
-   Enemy.prototype.moveHorizontal = function(offset) {
-
-      var elem = $(".enemy")[this.objCount];
-      console.log(elem);
-      var id = setInterval(frame, 10);
-      function frame() {
-        if (offset == 590) {
-          clearInterval(id);
-        } else {
-        offset++;
-        elem.style.top = offset + "px";
-        }
-      }
+    function mouseAim() {
+        $(".levelScreen").mousemove(function(event) {
+            //console.log("Coodinates of mouse: " + event.pageX + ", " + event.pageY);
+            //console.log("Coodinates of mouse: " + event.clientX + ", " + event.clientY);
+        })
     }
 
-
-   Enemy.prototype.moveVertical = function(offset) {
-     var elem = $(".enemy")[this.objCount];
-     console.log(elem);
-     var id = setInterval(frame, 10);
-     function frame() {
-       if (offset == 660.797) {
-       clearInterval(id);
-       } else {
-         offset++;
-         elem.style.left = offset + "px";
-       }
-     }
-   }
-
-   var target1 = new Enemy(100,70,10,10, "red");
-   var target2 = new Enemy(100,70,10,10, "yellow");
-   target1.moveHorizontal(100);
-   target2.moveVertical(100);
-   mouseAim();
-
-
-
-  function detectCollision() {
-    var targetTop, targetLeft, targetRight, targetBottom;
-    var target2Top, target2Left, target2Right, target2Bottom;
-
-    targetTop = target.offset().top;
-    targetLeft = target.offset().left;
-    targetRight = Number(target.offset().left) + Number(target.width());
-    targetBottom = Number(target.offset().top) + Number(target.height());
-
-    target2Top = target2.offset().top;
-    target2Left = target2.offset().left;
-    target2Right = Number(target2.offset().left) + Number(target2.width());
-    target2Bottom = Number(target2.offset().top) + Number(target2.height());
-    // (Element1.right > Element2.left && Element1.left < Element2.right && Element1.top < Element2.bottom && Element1.bottom > Element2.top)
-    if (target.right > target2.left && target.left < target2.right && target.top < target2.bottom && target.bottom > target2.top) {
-      console.log("A collision!!");
+    function hitTarget(enemy) {
+        $("." + enemy).on("click", function() {
+            $("." + enemy).remove();
+            console.log("I am dead");
+            playerOneScore++;
+        })
     }
+
+    function detectCollision(myclass) {
+
+    }
+
+    function makeNewPosition(myclass) {
+        // Get viewport dimensions (remove the dimension of the div)
+        var nh = Math.floor(Math.random() * maxY);
+        var nw = Math.floor(Math.random() * maxX);
+        return [nh, nw];
+    }
+
+    function animateDiv(myclass, speed) {
+        var newq = makeNewPosition(myclass);
+        $(myclass).animate({
+            top: newq[0],
+            left: newq[1]
+        }, speed, function() {
+            animateDiv(myclass, speed);
+        });
+    };
+
+    function randomise(maxLength) {
+        return Math.floor(Math.random() * maxLength);
+    }
+
+    var enemy1 = new Enemy("red");
+    var enemy2 = new Enemy("green");
+    var enemy3 = new Enemy("yellow");
+
+
+
+  function update_game() {
+  animateDiv(".enemy0",1000);
+  animateDiv(".enemy1",1000);
+  animateDiv(".enemy2",1000);
+  mouseAim();
+  console.log($(".enemy0").offset());
+  console.log($(".enemy1").offset());
+  console.log($(".enemy2").offset());
 
   }
 
-})
+  function update_menu() {
+
+  }
+
+  switch (state) {
+    case States.inGame:
+        update_game();
+      break;
+    case States.menu:
+      update_menu();
+      break;
+    default:
+      console.log("state: " + state);
+
+  }
+
+  })
