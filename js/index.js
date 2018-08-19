@@ -1,11 +1,6 @@
 $(function(event) {
-   var States = {inGame: "IN_GAME", menu: "MENU"}
-
-    var state = States.inGame;
 
     var playerOneScore = 0;
-    var levelNum = 0; // The level the player is on
-    var gameScore = 0; // Is the highscore of the player
     var objCount = 0;
     var enemyArea = $(".levelScreen");
     var enemyAreaWidth = enemyArea.width();
@@ -41,73 +36,51 @@ $(function(event) {
         });
     };
 
-
-    function Menu() {
-        this.objCount = objCount;
-        this.width = objWidth;
-        this.height = objHeight;
-        this.left = 100;
-        this.top = 100;
-
-        var menu = "menu" + this.objCount;
-        $(".levelScreen").append("<div class='" + menu + "'>Menu</div>");
-        hitTarget(enemy); // records clicks!
-        objCount++;
-
-        $(".menu" + this.objCount).css({
-          backgroundColor: "red",
-            position: "absolute",
-            width: this.width,
-            height: this.height,
-            display: "inline-block",
-            textAlign: "center",
-            left: this.left,
-            top: this.top
-        });
-    };
-
-        function Score() {
-            this.objCount = objCount;
-            this.width = objWidth;
-            this.height = objHeight;
-            this.left = maxX;
-            this.top = maxY;
-
-            var score = "score" + this.objCount;
-            //$(".levelScreen").append("<div class='" + score + "'>Enemy</div>")
-            $(".levelScreen").append("<div id='score' class='" + score + "'>score: " + playerOneScore + "</div>");
-            hitTarget(enemy); // records clicks!
-            objCount++;
-
-            $(".score" + this.objCount).css({
-                color: "white",
-                position: "absolute",
-                width: this.width,
-                height: this.height,
-                display: "inline-block",
-                textAlign: "center",
-                left: this.left,
-                top: this.top
-            });
-        };
-
     function mouseAim() {
         $(".levelScreen").mousemove(function(event) {
-            //console.log("Coodinates of mouse: " + event.pageX + ", " + event.pageY);
-            //console.log("Coodinates of mouse: " + event.clientX + ", " + event.clientY);
         })
     }
 
+
     function hitTarget(enemy) {
-      if(state == States.inGame) {
         $("." + enemy).on("click", function() {
-              $("." + enemy).remove();
-              console.log("I am dead");
-              playerOneScore++;
-              $('#score').text("score: " + playerOneScore);
-              console.log("done");
+            $("." + enemy).remove();
+            console.log("I am dead");
+            playerOneScore++;
+            console.log(playerOneScore);
         })
-      }
+    }
+
+    Enemy.prototype.moveHorizontal = function(offset) {
+        var elem = ".enemy" + this.objCount;
+        var id = setInterval(frame, 10);
+
+        function frame() {
+            if (offset == 590) {
+                clearInterval(id);
+            } else {
+                offset++;
+                $(elem).offset({
+                    left: offset
+                })
+            }
+        }
+    }
+
+    Enemy.prototype.moveVertical = function(offset) {
+        var elem = ".enemy" + this.objCount;
+        var id = setInterval(frame, 10);
+
+        function frame() {
+            if (offset == 590) {
+                clearInterval(id);
+            } else {
+                offset++;
+                $(elem).offset({
+                    top: offset
+                })
+            }
+        }
     }
 
     function detectCollision(myclass) {
@@ -120,7 +93,6 @@ $(function(event) {
         var nw = Math.floor(Math.random() * maxX);
         return [nh, nw];
     }
-
 
     function animateDiv(myclass, speed) {
         var newq = makeNewPosition(myclass);
@@ -139,37 +111,11 @@ $(function(event) {
     var enemy1 = new Enemy("red");
     var enemy2 = new Enemy("green");
     var enemy3 = new Enemy("yellow");
-    var menu = new Menu();
-    var score =new Score();
-
-function update() {
-}
-
-  function update_game() {
-  animateDiv(".enemy0",10000);
-  animateDiv(".enemy1",10000);
-  animateDiv(".enemy2",1000);
-  mouseAim();
-  console.log($(".enemy0").offset());
-  console.log($(".enemy1").offset());
-  console.log($(".enemy2").offset());
-  $(".levelScreen").append("<div class='"+score+"'>score: " + playerOneScore + "</div>");
-  }
-
-  function update_menu() {
-  $(".levelScreen").append("<div class='"+menu+"'>Menu</div>");
-  }
-
-  switch (state) {
-    case States.inGame:
-        update_game();
-      break;
-    case States.menu:
-      update_menu();
-      break;
-    default:
-      console.log("state: " + state);
-
-  }
-
-  })
+    animateDiv(".enemy0",2000);
+    animateDiv(".enemy1",2000);
+    animateDiv(".enemy2",2000);
+    mouseAim();
+    console.log($(".enemy0").offset());
+    console.log($(".enemy1").offset());
+    console.log($(".enemy2").offset());
+})

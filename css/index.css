@@ -1,8 +1,4 @@
 /* to animate the element an element position has to be fixed, relative or absolute. */
-.mainMenu {
-
-}
-
 .gameScreen {
   height: 100vh;
   background: #D3D3D3;
@@ -10,23 +6,54 @@
   position: relative;
 }
 
-.target {
-  background-color: #1B58E5;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  display: inline-block;
-  position: fixed;
+#mainMenu {
+  height: 80%;
+  width: 80%;
+  background: red;
+  margin: auto;
+  position: relative;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+/* Menu buttons */
+.menuButton {
+  position: absolute;
+  display: block;
+  border-radius: 12px;
+  width: 200px;
+}
+#menuStart {
+  top: 170px;
+}
+#menuInstructions {
+  top: 230px;
+}
+#menuLeaderBoard {
+  top: 290px;
+}
+#menuExit {
+  top: 350px;
+}
+
+/* Game window */
+#mainGame {
+    height: 80%;
+    width: 80%;
+    background: black;
+    margin: auto;
+    position: relative;
 }
 
 .levelScreen {
-  height: 80%; /* height is 590 */
-  width: 80%;
+  height: 100%; /* height is 590 */
+  width: 100%;
   background: black;
   margin: auto;
   position: relative;
 }
 
+/* In game buttons */
 .startBtn {
   margin-top: 15px;
   border-radius: 30px
