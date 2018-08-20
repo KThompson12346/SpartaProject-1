@@ -1,4 +1,6 @@
 /* to animate the element an element position has to be fixed, relative or absolute. */
+
+/* Browser window */
 .gameScreen {
   height: 100vh;
   background: #D3D3D3;
@@ -6,6 +8,7 @@
   position: relative;
 }
 
+/* Main menu screen  */
 #mainMenu {
   height: 80%;
   width: 80%;
@@ -44,20 +47,20 @@
     margin: auto;
     position: relative;
 }
-
 .levelScreen {
-  height: 100%; /* height is 590 */
+  height: 100%;
   width: 100%;
   background: black;
   margin: auto;
   position: relative;
 }
-
 /* In game buttons */
-.startBtn {
-  margin-top: 15px;
-  border-radius: 30px
-  height: 60px;
+.gameButtons {
+  border-radius: 12px;
   width: 100px;
   display: inline-block;
+  display: none;
+  margin: auto;
+  margin-top: 15px;
+  margin-left: 20px;
 }
