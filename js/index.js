@@ -35,7 +35,7 @@ $(function(event) {
           left: this.left,
           top: this.top
       });
-  };
+  };§
 
   function hitTarget(enemy) {
       $("." + enemy).on("click", function() {
@@ -128,8 +128,7 @@ $(function(event) {
       animateDiv(".enemy22",500);
     });
   }
-
-
+  
   startGame();
   levelStartBtn();
 })
