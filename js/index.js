@@ -37,11 +37,6 @@ $(function(event) {
       });
   };
 
-  function mouseAim() {
-      $("#mainGame").mousemove(function(event) {
-      })
-  }
-
   function hitTarget(enemy) {
       $("." + enemy).on("click", function() {
           $("." + enemy).remove();
@@ -108,33 +103,33 @@ $(function(event) {
       var enemy21 = new Enemy("powderblue");
       var enemy22 = new Enemy("blueviolet");
       var enemy23 = new Enemy("mocassin");
-      animateDiv(".enemy0",2000);
-      animateDiv(".enemy1",2000);
-      animateDiv(".enemy2",2000);
-      animateDiv(".enemy3",2000);
-      animateDiv(".enemy4",2000);
-      animateDiv(".enemy5",2000);
-      animateDiv(".enemy6",2000);
-      animateDiv(".enemy7",2000);
+      animateDiv(".enemy0",1000);
+      animateDiv(".enemy1",1000);
+      animateDiv(".enemy2",600);
+      animateDiv(".enemy3",1000);
+      animateDiv(".enemy4",500);
+      animateDiv(".enemy5",600);
+      animateDiv(".enemy6",900);
+      animateDiv(".enemy7",1000);
       animateDiv(".enemy8",2000);
-      animateDiv(".enemy9",2000);
+      animateDiv(".enemy9",500);
       animateDiv(".enemy10",2000);
-      animateDiv(".enemy11",2000);
-      animateDiv(".enemy12",2000);
-      animateDiv(".enemy13",2000);
-      animateDiv(".enemy14",2000);
+      animateDiv(".enemy11",500);
+      animateDiv(".enemy12",1000);
+      animateDiv(".enemy13",100);
+      animateDiv(".enemy14",700);
       animateDiv(".enemy15",2000);
       animateDiv(".enemy16",2000);
-      animateDiv(".enemy17",2000);
+      animateDiv(".enemy17",1000);
       animateDiv(".enemy18",2000);
       animateDiv(".enemy19",2000);
-      animateDiv(".enemy20",2000);
+      animateDiv(".enemy20",500);
       animateDiv(".enemy21",2000);
-      animateDiv(".enemy22",2000);
+      animateDiv(".enemy22",500);
     });
   }
 
-  mouseAim();
+
   startGame();
   levelStartBtn();
 })
