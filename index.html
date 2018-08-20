@@ -6,17 +6,26 @@
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
   </head>
   <body>
    <div class="gameScreen">
-     <div class="levelScreen" id="level1">
-       <div class="playerWeapon"></div>
+     <div id="mainGame" style="display:none">
+       <div class="levelScreen" id="level1">
+         <div class="playerWeapon"></div>
+       </div>
      </div>
-     <button class="startBtn" type="button" name="button">Start Game</button>
-   </div>
-   <div class="mainMenu">
+     <div id="mainMenu">
+       <div class="gameTitle">Square Shooter</div>
+       <button id="menuStart" class="menuButton" type="button" name="button"><h2>Start Game</h2></button>
+       <button id="menuInstructions" class="menuButton" type="button" name="button"><h2>Instructions</h2></button>
+       <button id="menuLeaderBoard" class="menuButton" type="button" name="button"><h2>Leader Board</h2></button>
+       <button id="menuExit" class="menuButton" type="button" name="button"><h2>Exit Game</h2></button>
+     </div>
+     <button id="startLevel" class="gameButtons" type="button" name="button"><h4>Start first level</h4></button>
 
-     
+     <button id="backToMenu" class="gameButtons" type="button" name="button"><h4>Back to menu</h4></button>
+     <div class="score" style="display:none"><h4></h4></div>
    </div>
   </body>
 </html>

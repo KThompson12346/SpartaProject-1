@@ -1,8 +1,6 @@
 /* to animate the element an element position has to be fixed, relative or absolute. */
-.mainMenu {
 
-}
-
+/* Browser window */
 .gameScreen {
   height: 100vh;
   background: #D3D3D3;
@@ -10,27 +8,78 @@
   position: relative;
 }
 
-.target {
-  background-color: #1B58E5;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  display: inline-block;
-  position: fixed;
+/* Main menu screen  */
+#mainMenu {
+  height: 80%;
+  width: 80%;
+  background: red;
+  margin: auto;
+  position: relative;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+/* Menu buttons */
+.menuButton {
+  position: absolute;
+  display: block;
+  border-radius: 12px;
+  width: 200px;
+}
+#menuStart {
+  top: 170px;
+}
+#menuInstructions {
+  top: 230px;
+}
+#menuLeaderBoard {
+  top: 290px;
+}
+#menuExit {
+  top: 350px;
 }
 
+/* Game window */
+#mainGame {
+    height: 80%;
+    width: 80%;
+    background: black;
+    margin: auto;
+    position: relative;
+}
+.gameTitle {
+  width: 400px;
+  margin-bottom: 350px;
+  font-family: 'Anton', sans-serif;
+  font-size: 40px;
+}
 .levelScreen {
-  height: 80%; /* height is 590 */
-  width: 80%;
+  height: 100%;
+  width: 100%;
   background: black;
   margin: auto;
   position: relative;
 }
+.score {
+  background-color: white;
+  width: 115px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 12px;
+  margin: auto;
+  margin-top: 20px;
+  margin-left: 30px;
+  padding-top: 15px;
+  text-align: center;
+}
 
-.startBtn {
-  margin-top: 15px;
-  border-radius: 30px
-  height: 60px;
+/* In game buttons */
+.gameButtons {
+  border-radius: 12px;
   width: 100px;
   display: inline-block;
+  display: none;
+  margin: auto;
+  margin-top: 15px;
+  margin-left: 20px;
 }
