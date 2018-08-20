@@ -47,6 +47,12 @@
     margin: auto;
     position: relative;
 }
+.gameTitle {
+  width: 400px;
+  margin-bottom: 350px;
+  font-family: 'Anton', sans-serif;
+  font-size: 40px;
+}
 .levelScreen {
   height: 100%;
   width: 100%;
@@ -54,6 +60,19 @@
   margin: auto;
   position: relative;
 }
+.score {
+  background-color: white;
+  width: 115px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 12px;
+  margin: auto;
+  margin-top: 20px;
+  margin-left: 30px;
+  padding-top: 15px;
+  text-align: center;
+}
+
 /* In game buttons */
 .gameButtons {
   border-radius: 12px;
