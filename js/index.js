@@ -51,42 +51,6 @@ $(function(event) {
         })
     }
 
-    Enemy.prototype.moveHorizontal = function(offset) {
-        var elem = ".enemy" + this.objCount;
-        var id = setInterval(frame, 10);
-
-        function frame() {
-            if (offset == 590) {
-                clearInterval(id);
-            } else {
-                offset++;
-                $(elem).offset({
-                    left: offset
-                })
-            }
-        }
-    }
-
-    Enemy.prototype.moveVertical = function(offset) {
-        var elem = ".enemy" + this.objCount;
-        var id = setInterval(frame, 10);
-
-        function frame() {
-            if (offset == 590) {
-                clearInterval(id);
-            } else {
-                offset++;
-                $(elem).offset({
-                    top: offset
-                })
-            }
-        }
-    }
-
-    function detectCollision(myclass) {
-
-    }
-
     function makeNewPosition(myclass) {
         // Get viewport dimensions (remove the dimension of the div)
         var nh = Math.floor(Math.random() * maxY);
@@ -107,6 +71,15 @@ $(function(event) {
     function randomise(maxLength) {
         return Math.floor(Math.random() * maxLength);
     }
+// Menu screen button click events.
+    function startGame() {// Function to bring user to the game window.
+      $("#menuStart").on("click", function(){
+        $("#mainGame").show(); // when the start game button is clicked on the mainMenu screen the game window is shown.
+        $("#mainMenu").hide(); // when the start game button is clicked on the mainMenu screen the menu window is hidden.
+      });
+    }
+
+      
 
     var enemy1 = new Enemy("red");
     var enemy2 = new Enemy("green");
@@ -115,7 +88,8 @@ $(function(event) {
     animateDiv(".enemy1",2000);
     animateDiv(".enemy2",2000);
     mouseAim();
-    console.log($(".enemy0").offset());
-    console.log($(".enemy1").offset());
-    console.log($(".enemy2").offset());
+    startGame();
+    // console.log($(".enemy0").offset());
+    // console.log($(".enemy1").offset());
+    // console.log($(".enemy2").offset());
 })
