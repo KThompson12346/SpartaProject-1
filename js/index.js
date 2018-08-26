@@ -35,7 +35,7 @@ $(function(event) {
           left: this.left,
           top: this.top
       });
-  };§
+  }
 
   function hitTarget(enemy) {
       $("." + enemy).on("click", function() {
@@ -71,6 +71,7 @@ $(function(event) {
 // Menu screen button click events.
   function startGame() {// Function to bring user to the game window.
     $("#menuStart").on("click", function(){
+      
       $("#mainGame").show(); // when the start game button is clicked on the mainMenu screen the game window is shown.
       $(".gameButtons").show(); // Shows the in game navigation controls when in the game window.
       $("#mainMenu").hide(); // when the start game button is clicked on the mainMenu screen the menu window is hidden.
@@ -128,7 +129,7 @@ $(function(event) {
       animateDiv(".enemy22",500);
     });
   }
-  
+
   startGame();
   levelStartBtn();
 })
